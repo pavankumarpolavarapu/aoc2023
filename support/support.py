@@ -59,13 +59,13 @@ def get_year_day() -> tuple[int, int]:
 
 def download_input() -> int:
     parser = argparse.ArgumentParser()
-    parser.parse_args()
-
-    year, day = get_year_day()
+    parser.add_argument('year', type=int)
+    parser.add_argument('day', type=int)
+    args = parser.parse_args()
 
     for i in range(5):
         try:
-            s = get_input(year, day)
+            s = get_input(args.year, args.day)
         except urllib.error.URLError as e:
             print(f'zzz: not ready yet: {e}')
             time.sleep(1)
